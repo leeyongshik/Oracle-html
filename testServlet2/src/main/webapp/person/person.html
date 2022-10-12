@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table{
+		border : 1px solid black;
+		border-collapse : collapse;
+	}
+	#nameDiv{
+	color : red;
+	font-size : 8pt;
+	font-weight : bold;
+	margin-left:10px;
+	}
+	#hobbyDiv{
+	color : red;
+	font-size : 8pt;
+	font-weight : bold;
+	margin-left:10px;
+	}
+	
+</style>
+</head>
+<body>
+
+	<form name="personForm" method="" id="Form" action="http://localhost:8080/testServlet2/PersonServlet">
+	
+		<table border="1" width="400">
+			<tr>
+				<td width="80" align="center">이름</td>
+				<td>
+					<input type="text" name ="name" id="name" placeholder="이름 입력"/>
+					<div id="nameDiv" name="nameDiv"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" height="50">성별</td>
+				<td>
+					
+					<div style="height : 40px; border : 1px solid black ;">
+					<input type="radio" name="gender" value="0" style="margin-top:12px;" checked/>남
+					<input type="radio" name="gender" value="1" />여
+					</div>
+				
+				</td>
+			</tr>
+			<tr>
+				<td align="center">색깔</td>
+				<td>
+					<select name="color">
+						<option>색깔</option>
+						<option value="red">red</option>
+						<option value="green">green</option>
+						<option value="blue">blue</option>
+						<option value="magenta">magenta</option>
+						<option value="cyan">cyan</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">취미</td>
+				<td>
+					<div style=" border : 1px solid black ;">
+					<input type="checkbox" name="hobby" id="hobby0" value="독서" style="margin-top:12px;"/>
+					<label for="hobby0">독서</label>
+					<input type="checkbox" name="hobby" id="hobby1" value="영화"/>
+					<label for="hobby1">영화</label>
+					<input type="checkbox" name="hobby" id="hobby2" value="음악"/>
+					<label for="hobby2">음악</label>
+					<input type="checkbox" name="hobby" id="hobby3" value="게임"/>
+					<label for="hobby3">게임</label>
+					<input type="checkbox" name="hobby" id="hobby4" value="쇼핑"/>
+					<label for="hobby4">쇼핑</label>
+					<div id="hobbyDiv" name="hobbyDiv"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" height="100">과목</td>
+				<td>
+					<select name="subject" id="subject" multiple style="width : 150px; height : 100px;" >
+					<option value="JAVA">JAVA</option>
+					<option value="Servlet" selected="selected">Servlet</option>
+					<option value="JSP">JSP</option>
+					<option value="SPRING">SPRING</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="SEND" onclick="javascript:check()"/>
+					<input type="reset" value="CANCEL"/>
+				</td>
+			
+			</tr>
+		
+		</table>
+	
+	</form>
+	
+	<script type="text/javascript">
+	function check() {
+		
+		document.getElementById("nameDiv").innerText = "";
+		//document.getElementById("hobbyDiv").innerText = "";
+	
+		if(document.getElementById("name").value=="") document.getElementById("nameDiv").innerText = "이름을 입력하세요";
+		//else if(document.personForm.hobby.value == "") document.getElementById("hobbyDiv").innerText = "취미를 선택하세요";
+		else document.personForm.submit();
+		
+	}
+	</script>
+
+</body>
+</html>

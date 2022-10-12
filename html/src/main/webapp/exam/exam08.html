@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="result.html">
+		<fieldset>
+			<legend>
+				이름 입력하기
+			</legend>
+			<div>
+				<label for="user_name">이름 :</label>
+				<input type="text" name = "user_name" id = "user_name"/>
+			</div>
+			<br>
+			<div>
+				<input type="submit" value = "입력완료"/><!-- submit을 하면 form action으로 이동해라 -->
+				<input type="reset" value = "초기화"/> 
+				<input type="button" value = "입력완료" onclick="javascript:location.href='result.html'"/>
+				<input type="image" src="../img/ok.png" alt="확인" weith="30"  height="30"/><!-- 자동으로 submit 한다 -->
+				<!-- <input type="image" src="../img/ok.png" alt="확인" weith="30"  height="30" onclick="return false;"/> -->
+			</div>
+			
+		</fieldset>
+	</form>
+
+
+</body>
+</html>

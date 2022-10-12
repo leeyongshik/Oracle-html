@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table{
+		border : 1px solid black;
+		border-collapse : collapse;
+	}
+	div{
+	color : red;
+	font-size : 8pt;
+	font-weight : bold;
+	margin-left:10px;
+	}
+</style>
+</head>
+<body>
+	<form name="paramForm" method="" action="http://localhost:8080/testServlet/ParamServlet">
+		<table border ="1" width="250">
+			<tr>
+				<td align="center" width="80" height="30">이 름</td>
+				<td >
+				<input type="text" name="name" id="name" style="margin-left:10px;"/>
+				<div id = "nameDiv"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" height="30" >나 이</td>
+				<td>
+				<input type="text" name="age" id="age" maxlength="2" style="width:80px; margin-left:10px;"/>
+				<div id = "ageDiv"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center" height="30">
+					<input type="button" value="보내기" onclick="javascript:check()"/>
+					<input type="reset" value="취소"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+<script type="text/javascript">
+	function check(){
+		//if(document.paramForm.name.value == "") alert("이름을 입력하세요")
+		//else if(document.paramForm.age.value == "") alert("나이를 입력하세요")
+		
+		//if(document.getElementById("name").value=="") alert("이름을 입력하세요")
+		//else if(document.getElementById("age").value=="") alert("나이를 입력하세요")
+		
+		document.getElementById("nameDiv").innerText = "";
+		document.getElementById("ageDiv").innerText = "";
+		
+		if(document.getElementById("name").value=="") document.getElementById("nameDiv").innerText = "이름을 입력하세요";
+		else if(document.getElementById("age").value=="") document.getElementById("ageDiv").innerText = "나이를 입력하세요";
+		else document.paramForm.submit();
+		
+		
+	}
+</script>
+
+</body>
+</html>
