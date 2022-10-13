@@ -25,9 +25,9 @@
 </head>
 <body>
 
-	<form name="personForm" method="" id="Form" action="http://localhost:8080/testServlet2/PersonServlet">
+	<form name="personForm" method="" action="http://localhost:8080/testServlet2/PersonServlet">
 	
-		<table border="1" width="400">
+		<table border="1" width="450" cellpadding="3">
 			<tr>
 				<td width="80" align="center">이름</td>
 				<td>
@@ -39,10 +39,10 @@
 				<td align="center" height="50">성별</td>
 				<td>
 					
-					<div style="height : 40px; border : 1px solid black ;">
-					<input type="radio" name="gender" value="0" style="margin-top:12px;" checked/>남
+					<fieldset>
+					<input type="radio" name="gender" value="0" checked/>남
 					<input type="radio" name="gender" value="1" />여
-					</div>
+					</fieldset>
 				
 				</td>
 			</tr>
@@ -50,19 +50,20 @@
 				<td align="center">색깔</td>
 				<td>
 					<select name="color">
-						<option>색깔</option>
-						<option value="red">red</option>
-						<option value="green">green</option>
-						<option value="blue">blue</option>
-						<option value="magenta">magenta</option>
-						<option value="cyan">cyan</option>
+						<optgroup label="색깔">
+							<option value="red">red</option>
+							<option value="green">green</option>
+							<option value="blue">blue</option>
+							<option value="magenta">magenta</option>
+							<option value="cyan">cyan</option>
+						</optgroup>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">취미</td>
 				<td>
-					<div style=" border : 1px solid black ;">
+					<fieldset>
 					<input type="checkbox" name="hobby" id="hobby0" value="독서" style="margin-top:12px;"/>
 					<label for="hobby0">독서</label>
 					<input type="checkbox" name="hobby" id="hobby1" value="영화"/>
@@ -74,7 +75,7 @@
 					<input type="checkbox" name="hobby" id="hobby4" value="쇼핑"/>
 					<label for="hobby4">쇼핑</label>
 					<div id="hobbyDiv" name="hobbyDiv"></div>
-					</div>
+					</fieldset>
 				</td>
 			</tr>
 			<tr>

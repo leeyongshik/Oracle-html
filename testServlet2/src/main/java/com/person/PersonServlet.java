@@ -38,42 +38,28 @@ public class PersonServlet extends HttpServlet {
 		out.println("color :"+color+";}");
 		out.println("</style>");
 		out.println("</head>");
-		
 		out.println("<body>");
 		
 		out.println("<ul>");
-		
-		
-		out.println("<li>");
-		out.println("이름 : "+name);
+		out.print("<li>");
+		out.print("이름 : "+name);
 		out.println("</li>");
-		
-		out.println("<li>");
-		out.println("성별 : "+gender);
+		out.print("<li>");
+		out.print("성별 : "+gender);
 		out.println("</li>");
-		
-		out.println("<li>");
-		out.println("색깔 : "+color);
+		out.print("<li>");
+		out.print("색깔 : "+color);
 		out.println("</li>");
-		
-		out.println("<li>");
-		out.println("취미 : "+Arrays.toString(hobby));
+		out.print("<li>");
+		out.print("취미 : "+Arrays.toString(hobby));
 		out.println("</li>");
-		
-		out.println("<li>");
-		out.println("과목 : "+Arrays.toString(subject));
+		out.print("<li>");
+		out.print("과목 : "+Arrays.toString(subject));
 		out.println("</li>");
-		
 		out.println("</ul>");
-		out.println("");
 		
 		out.println("</body>");
 		out.println("</html>");
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 	
 
