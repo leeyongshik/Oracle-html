@@ -19,7 +19,7 @@
 </head>
 <body>
 	<h3>회원가입</h3>
-	<form name="writeForm" method="post" action="">
+	<form name="writeForm" method="post" action="/memberServlet/WriteServlet">
 		<table border ="1" width="500" cellpadding="10">
 			<tr>
 				<td width="100" align="center">이름</td>
@@ -60,9 +60,9 @@
 				<td width="100" align="center">핸드폰</td>
 				<td>
 					<select name="tel1">
-					<option>010</option>
-					<option>011</option>
-					<option>019</option>
+					<option value="010">010</option>
+					<option value="011">011</option>
+					<option value="019">019</option>
 					</select>
 					-
 					<input type="tel" name="tel2" maxlength="4" style="width:50px;"/>
@@ -76,17 +76,17 @@
 					<input type="text" name="email1"/> @ 
 					<input type="text" name="email2" list="email2" placeholder="직접입력"/>
 					<datalist id=email2>
-						<option>gmail.com</option>
-						<option>naver.com</option>
-						<option>daum.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="naver.com">naver.com</option>
+						<option value="daum.com">daum.com</option>
 					</datalist>
 					
-					<select id="email3" name="email3" onchange="change()">
+<!-- 					<select id="email3" name="email3" onchange="change()">
 						<option value="">직접입력</option>
 						<option value="gmail.com">gmail.com</option>
 						<option value="naver.com">naver.com</option>
 						<option value="daum.com">daum.com</option>
-					</select>
+					</select> -->
 				</td>
 			</tr>
 			<tr>
@@ -110,10 +110,10 @@
 	</form>
 	
 	<script type="text/javascript">
-	function change() {
+/* 	function change() {
 		document.writeForm.email2.value = document.writeForm.email3.value;
 		
-	}
+	} */
 	
 	function checkWrite() {
 		document.getElementById("nameDiv").innerText="";
