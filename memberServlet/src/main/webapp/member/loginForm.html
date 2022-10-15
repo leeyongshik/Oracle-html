@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <style type="text/css">
+	body{
+		margin-left: 200px;
+		margin-top: 100px;
+	}
 	table{
 		border : 1px solid black;
 		border-collapse : collapse;
@@ -17,7 +21,8 @@
 </style>
 </head>
 <body>
-	<form action="/memberServlet/LoginServlet" name="loginForm" id="liginForm" method="post">
+	<h1>로그인</h1>
+	<form action="/memberServlet/LoginServlet" name="loginForm" id="loginForm" method="post">
 		<table border="1" cellpadding="5">
 			<tr >
 				<td width="100" align="center">아이디</td>
@@ -35,7 +40,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="로그인" onclick="checkLogin()"/>
-					<button formtaget="_blank" onClick="location.href='http://localhost:8080/memberServlet/member/writeForm.html'; return false;">회원가입</button>
+					<input type="button" value="회원가입" onClick="location.href='http://localhost:8080/memberServlet/member/writeForm.html';"/>
 				</td>
 			</tr>
 		</table>
@@ -48,8 +53,14 @@
 	 	document.getElementById("idDiv").innerText="";
 		document.getElementById("pwdDiv").innerText="";
 		
-		if(document.getElementById("id").value=="") document.getElementById("idDiv").innerText="아이디를 입력하세요.";
-		else if(document.getElementById("pwd").value=="") document.getElementById("pwdDiv").innerText="비밀번호를 입력하세요.";
+		if(document.getElementById("id").value=="") {
+			document.getElementById("idDiv").innerText="아이디를 입력하세요.";
+			document.loginForm.id.focus();
+		}
+		else if(document.getElementById("pwd").value=="") {
+			document.getElementById("pwdDiv").innerText="비밀번호를 입력하세요.";
+			document.loginForm.pwd.focus();
+		}
 		else document.loginForm.submit();
 	}
 	

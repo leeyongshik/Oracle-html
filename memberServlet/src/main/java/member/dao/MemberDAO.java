@@ -78,21 +78,19 @@ public class MemberDAO {
 	}
 
 
-	public String memberCheck(MemberDTO memberDTO) {
+	public String memberLogin(String id, String pwd) {
 		String name=null;
 		String sql = "SELECT name FROM member where id=? and pwd=?";
 		getConnecting();
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberDTO.getId());
-			pstmt.setString(2, memberDTO.getPwd());
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
 			
 			rs = pstmt.executeQuery();
+			if(rs.next()) name=rs.getString("name");
 			
-			while(rs.next()) {
-			name = rs.getString("name");
-			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -106,12 +104,6 @@ public class MemberDAO {
 				}
 		}
 		
-		
 		return name;
 	}
-
-
-
-
-
 }

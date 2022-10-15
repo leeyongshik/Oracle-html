@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.bean.MemberDTO;
 import member.dao.MemberDAO;
 
 
@@ -19,8 +18,6 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
 		
 		//데이터
 		String id = request.getParameter("id");
@@ -28,11 +25,11 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		//DB
-		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setId(id);
-		memberDTO.setPwd(pwd);
-		MemberDAO memberDAO = MemberDAO.getInstance();
-		String name = memberDAO.memberCheck(memberDTO);
+//		MemberDTO memberDTO = new MemberDTO();
+//		memberDTO.setId(id);
+//		memberDTO.setPwd(pwd);
+		MemberDAO memberDAO = MemberDAO.getInstance(); // 싱글톤
+		String name = memberDAO.memberLogin(id, pwd);
 		
 		
 		//응답

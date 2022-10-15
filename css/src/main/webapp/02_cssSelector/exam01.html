@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	h3, li{
+		color : brown;
+	}
+	div > div > strong{ 
+		background : yellow;
+	}
+	ul strong {
+		color : dodgerblue;
+	}
+	.warnig{
+		color : red;
+	}
+	body.main{
+		background : aliceblue;
+	}
+	#list{
+		background : mistyrose;
+	}
+	#list span{
+		color : forestgreen;
+	}
+	h3:first-letter{
+		color : red;
+		font-size : 25px;
+	}
+	li:hover{
+		background : yellowgreen;
+	}
+	::selection{/* 마우스로 드래그 하면 색상 변경*/
+		color : red;
+		background : yellow;
+	}
+</style>
+</head>
+<body class="main">
+<h3>Web programming</h3>
+<hr>
+<div>
+	<div>2학기<strong>학습 내용</strong>입니다.</div>
+	<ul id="list">
+		<li><span>HTML5</span></li>
+		<li><strong>CSS</strong></li>
+		<li>JAVASCRIPT</li>
+	</ul>
+	<div class="warnig">60점 이하는 F</div>
+</div>
+
+</body>
+</html>
