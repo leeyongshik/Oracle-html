@@ -1,7 +1,24 @@
 package guestbook.bean;
 
 public class GuestbookDTO {
-	private String name, email, homepage, subject, content;
+	private String name, email, homepage, subject, content, logtime;
+	public String getLogtime() {
+		return logtime;
+	}
+
+	public void setLogtime(String logtime) {
+		this.logtime = logtime;
+	}
+
+	private int key;
+
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
+	}
 
 	public String getName() {
 		return name;

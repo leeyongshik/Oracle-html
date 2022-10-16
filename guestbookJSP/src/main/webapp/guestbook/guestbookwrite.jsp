@@ -17,6 +17,7 @@
 <% String subject = request.getParameter("subject"); %>
 <% String content = request.getParameter("content"); %>
 
+
 <% GuestbookDTO guestbookDTO = new GuestbookDTO(); %>
 <% guestbookDTO.setName(name); %>
 <% guestbookDTO.setEmail(email); %>
@@ -26,8 +27,6 @@
 
 <% GuestbookDAO guestbookDAO = GuestbookDAO.getInstance(); %>
 <% int su = guestbookDAO.guestbookWrite(guestbookDTO); %>
-
-<% response.setContentType("text/html;charset=UTF-8");%>
 
 <table>
 	<tr>

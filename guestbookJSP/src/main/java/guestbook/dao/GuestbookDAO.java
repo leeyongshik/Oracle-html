@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import guestbook.bean.GuestbookDTO;
 
@@ -46,6 +47,7 @@ public class GuestbookDAO {
 		int su=0;
 		String sql="INSERT INTO guestbook VALUES (seq_guestbook.nextval,?,?,?,?,?,sysdate)";
 		
+		if(guestbookDTO.getHomepage().equals("http://"))guestbookDTO.setHomepage(null);
 		getConnecting();
 		
 		try {
@@ -71,6 +73,81 @@ public class GuestbookDAO {
 		
 		return su;
 		
+	}
+	public ArrayList guestbookList() {
+		GuestbookDTO guestbookDTO = null;
+		String sql = "SELECT seq, name, email, homepage, subject, content, to_char(logtime,'YYYY-MM-DD') FROM guestbook order by seq DESC";
+		ArrayList<GuestbookDTO> list = new ArrayList<GuestbookDTO>();
+		
+		
+		
+		getConnecting();
+		
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					guestbookDTO = new GuestbookDTO();
+					guestbookDTO.setKey(rs.getInt("seq"));
+					if(rs.getString("name")!=null) guestbookDTO.setName(rs.getString("name"));
+					else guestbookDTO.setName("");
+					if(rs.getString("email")!=null) guestbookDTO.setEmail(rs.getString("email"));
+					else guestbookDTO.setEmail("");
+					if(rs.getString("homepage")!=null) guestbookDTO.setHomepage(rs.getString("homepage"));
+					else guestbookDTO.setHomepage("");
+					guestbookDTO.setSubject(rs.getString("subject"));
+					guestbookDTO.setContent(rs.getString("content"));
+					guestbookDTO.setLogtime(rs.getString("to_char(logtime,'YYYY-MM-DD')"));
+					list.add(guestbookDTO);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
+			return list;
+		
+	}
+
+
+	public void setConn(Connection conn) {
+		this.conn = conn;
+	}
+
+
+	public void setPstmt(PreparedStatement pstmt) {
+		this.pstmt = pstmt;
+	}
+
+
+	public void setRs(ResultSet rs) {
+		this.rs = rs;
+	}
+
+
+	public Connection getConn() {
+		return conn;
+	}
+
+
+	public PreparedStatement getPstmt() {
+		return pstmt;
+	}
+
+
+	public ResultSet getRs() {
+		return rs;
 	}
 
 }
