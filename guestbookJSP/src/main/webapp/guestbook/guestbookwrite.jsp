@@ -28,9 +28,16 @@
 <% GuestbookDAO guestbookDAO = GuestbookDAO.getInstance(); %>
 <% int su = guestbookDAO.guestbookWrite(guestbookDTO); %>
 
+
+
 <table>
 	<tr>
-		<td width="200px;" align="center">
+		<td align="center">
+			<img src = "../img/222.gif" width="70" height="70" onclick="location.href='guestbookWriteForm.html'" style="cursor : pointer;">
+		</td>
+	</tr>
+	<tr>
+		<td width="300px;" align="center">
 			<% if(su==1)
 				out.print("작성하신 글을 저장하였습니다."); 
 			else
@@ -39,6 +46,7 @@
 	</tr>
 	<tr>
 		<td width="200px;" align="center">
+			<input type="button" value="뒤로" onclick="history.back()">
 			<input type="button" value="글 목록" onclick="location.href='guestbookList.jsp';"/>
 		</td>
 	</tr>

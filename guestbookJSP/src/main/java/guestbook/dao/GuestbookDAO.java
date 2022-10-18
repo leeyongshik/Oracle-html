@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import guestbook.bean.GuestbookDTO;
 
@@ -74,9 +75,9 @@ public class GuestbookDAO {
 		return su;
 		
 	}
-	public ArrayList guestbookList() {
+	public ArrayList<GuestbookDTO> guestbookList(Map<String, Integer> map) {
 		GuestbookDTO guestbookDTO = null;
-		String sql = "SELECT seq, name, email, homepage, subject, content, to_char(logtime,'YYYY-MM-DD') FROM guestbook order by seq DESC";
+		String sql = "SELECT * FROM (SELECT rownum rn, tt.* FROM (SELECT seq, name, email, homepage, subject, content, to_char(logtime,'YYYY-MM-DD') FROM guestbook order by seq DESC) tt) where rn >=? and rn<=?";
 		ArrayList<GuestbookDTO> list = new ArrayList<GuestbookDTO>();
 		
 		
@@ -85,10 +86,13 @@ public class GuestbookDAO {
 		
 			try {
 				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, map.get("startNum"));
+				pstmt.setInt(2, map.get("endNum"));
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					guestbookDTO = new GuestbookDTO();
-					guestbookDTO.setKey(rs.getInt("seq"));
+					guestbookDTO.setSeq(rs.getInt("seq"));
 					if(rs.getString("name")!=null) guestbookDTO.setName(rs.getString("name"));
 					else guestbookDTO.setName("");
 					if(rs.getString("email")!=null) guestbookDTO.setEmail(rs.getString("email"));
@@ -103,9 +107,11 @@ public class GuestbookDAO {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				list=null;
 			}
 			finally {
 				try {
+					if(rs != null) rs.close();
 					if(pstmt != null) pstmt.close();
 					if(conn != null) conn.close();
 					
@@ -119,35 +125,38 @@ public class GuestbookDAO {
 			return list;
 		
 	}
-
-
-	public void setConn(Connection conn) {
-		this.conn = conn;
+	public int getTotalA() {
+		int totalA=0;
+		
+		String sql = "select count(*) from guestbook";
+		
+		getConnecting();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) totalA = rs.getInt("count(*)");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		
+		
+		return totalA;
+		
 	}
-
-
-	public void setPstmt(PreparedStatement pstmt) {
-		this.pstmt = pstmt;
-	}
-
-
-	public void setRs(ResultSet rs) {
-		this.rs = rs;
-	}
-
-
-	public Connection getConn() {
-		return conn;
-	}
-
-
-	public PreparedStatement getPstmt() {
-		return pstmt;
-	}
-
-
-	public ResultSet getRs() {
-		return rs;
-	}
+	
 
 }
