@@ -34,6 +34,7 @@
 				<td>
 					<input type="text" name="id" id="id" placeholder="아이디 입력" onchange="countReset()"/>
 					<input type="button" value="중복체크" onclick="checkId()" >
+					<input type="hidden" name="check" >
 					<div id="idDiv"></div>
 				</td>
 			</tr>

@@ -13,7 +13,8 @@
 		else if(document.getElementById("pwd").value=="") document.getElementById("pwdDiv").innerText="비밀번호를 입력하세요.";
 		else if(document.getElementById("repwd").value=="") document.getElementById("repwdDiv").innerText="재확인을 입력하세요.";
 		else if(document.getElementById("pwd").value != document.getElementById("repwd").value) document.getElementById("repwdDiv").innerText="비밀번호와 재확인이 다릅니다.";
-		else if(count===0) alert("중복확인을 하세요.");
+		else if(document.writeForm.id.value != document.writeForm.check.value) document.getElementById("idDiv").innerText="중복체크 하세요";
+		//else if(count===0) alert("중복확인을 하세요.");
 		else document.writeForm.submit();
 }
 

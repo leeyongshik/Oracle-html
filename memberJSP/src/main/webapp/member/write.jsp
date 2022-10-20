@@ -49,11 +49,20 @@
 			회원가입 실패
 		<%} %> --%>
 		
+		<%if(su==1){ %>
 		<script type="text/javascript">
 		window.onload = function(){
 			alert("회원가입 성공");
 			location.href = 'loginForm.jsp';
 		}
 		</script>
+		<%}else { %>
+		<script type="text/javascript">
+		window.onload = function(){
+			alert("회원가입 실패");
+			location.href = 'writeForm.jsp';
+		}
+		</script>
+		<%} %>
 </body>
 </html>

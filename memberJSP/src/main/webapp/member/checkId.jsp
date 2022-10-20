@@ -34,14 +34,11 @@ boolean exist = memberDAO.isExistId(id);//아이디가 있으면 true - 사용 �
 	function checkIdClose(id) {
 		
 		opener.writeForm.id.value=id;
+		opener.writeForm.check.value=id;
 		opener.writeForm.pwd.focus();
 		window.close();
 		
-		
 	}
-	
-	
-	
 	
 </script>
 </body>
