@@ -1,21 +1,18 @@
 package member.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.Map;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import member.bean.MemberDTO;
 
 public class MemberDAO {
-	private Connection conn;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
-	
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@UQ6UF3I29AUZDRMN_medium?TNS_ADMIN=/Users/leeyongshik/Desktop/JAVA/java_ee/Wallet_UQ6UF3I29AUZDRMN";
-	private String user = "java";
-	private String password = "Wjstks0cjfl!@";
+	private SqlSessionFactory sqlSessionFactory;
 	
 	private static MemberDAO memberDAO = new MemberDAO();
 	
@@ -27,113 +24,41 @@ public class MemberDAO {
 	
 	public MemberDAO() {
 		try {
-			Class.forName(driver);//생성
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void getConnecting() {
-		try {
-			conn = DriverManager.getConnection(url, user, password);
-		} catch (SQLException e) {
+			Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 
 	public int memberWrite(MemberDTO memberDTO) {
-		int su =0;
-		String sql = "insert into member values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int su = sqlSession.insert("memberSQL.memberWrite",memberDTO);
+		sqlSession.commit();
+		sqlSession.close();
 		
-		getConnecting();
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,memberDTO.getName());
-			pstmt.setString(2,memberDTO.getId());
-			pstmt.setString(3,memberDTO.getPwd());
-			pstmt.setString(4,memberDTO.getGender());
-			pstmt.setString(5,memberDTO.getTel1());
-			pstmt.setString(6,memberDTO.getTel2());
-			pstmt.setString(7,memberDTO.getTel3());
-			pstmt.setString(8,memberDTO.getEmail1());
-			pstmt.setString(9,memberDTO.getEmail2());
-			pstmt.setString(10,memberDTO.getZipcode());
-			pstmt.setString(11,memberDTO.getAddr1());
-			pstmt.setString(12,memberDTO.getAddr2());
-			
-			su = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstmt!=null)pstmt.close();
-				if(conn!=null)conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
 		return su;
 	}
 
 
-	public String memberLogin(String id, String pwd) {
-		String name=null;
-		String sql = "SELECT name FROM member where id=? and pwd=?";
-		getConnecting();
+	public String memberLogin(Map<String, String> map) {
 		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
-			
-			rs = pstmt.executeQuery();
-			if(rs.next()) name=rs.getString("name");
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}finally {
-				try {
-					if(rs!=null) rs.close();
-					if(pstmt!=null) pstmt.close();
-					if(conn!=null) conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		MemberDTO memberDTO = sqlSession.selectOne("memberSQL.memberLogin", map);
+		sqlSession.close();
 		
-		return name;
+		if(memberDTO != null) return memberDTO.getName();
+		else return null;
+		
 	}
 	
 	public boolean isExistId(String id) {
 		
 		boolean exist=false;
-		String a=null;
-		String sql = "select * from member where id=?";
-		getConnecting();
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			
-			rs = pstmt.executeQuery();
-			if(rs.next()) exist =true;
-//			if(rs.next()) a=rs.getString("id");
-//			if(id.equals(a)) exist=true;
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(rs!=null)rs.close();
-				if(pstmt!=null)pstmt.close();
-				if(conn!=null)conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		exist = sqlSession.selectOne("memberSQL.isExistId", id);
+		sqlSession.close();
 		return exist;
 	}
 }

@@ -35,14 +35,14 @@
 			<tr>
 				<td align="center">비밀번호</td>
 				<td>
-					<input type="text" name="pwd" id="pwd" style="width : 200px;"/>
+					<input type="password" name="pwd" id="pwd" style="width : 200px;"/>
 					<div id="pwdDiv"></div>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="로그인" onclick="checkLogin()"/>
-					<input type="button" value="회원가입" onClick="location.href='http://localhost:8080/memberServlet/member/writeForm.html';"/>
+					<input type="button" value="회원가입" onClick="location.href='/memberJSP/member/writeForm.jsp';"/>
 				</td>
 			</tr>
 		</table>

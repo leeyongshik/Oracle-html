@@ -15,10 +15,10 @@ public class UserSearchService  implements UserService{
 		String id=null;
 		
 		System.out.println();
-		System.out.println("***************");
+		System.out.println("*******************");
 		System.out.println("   1. 이름으로 검색 ");
 		System.out.println("   2. 아이디로 검색 ");
-		System.out.println("***************");
+		System.out.println("*******************");
 		System.out.print("  번호 : " );
 		int num = s.nextInt();
 		System.out.println();
@@ -39,6 +39,11 @@ public class UserSearchService  implements UserService{
 		
 		UserDAO userDAO = UserDAO.getInstance();
 		List<UserDTO> list = userDAO.search(userDTO);
+		
+		if(list.size()==0) {
+			System.out.println("찾는 값이 없습니다.");
+			return;
+		}
 		
 		for(UserDTO userDTO2 : list) {
 			System.out.println(userDTO2.getName() + "\t" + userDTO2.getId() + "\t" + userDTO2.getPwd());

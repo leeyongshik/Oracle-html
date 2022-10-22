@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="member.dao.MemberDAO"%>
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +18,6 @@
 String id = request.getParameter("id");
 MemberDAO memberDAO = MemberDAO.getInstance();
 boolean exist = memberDAO.isExistId(id);//아이디가 있으면 true - 사용 불가능, 아이디가 없으면 false - 사용 가능
-
 %>
 
 <% if(exist) { %>

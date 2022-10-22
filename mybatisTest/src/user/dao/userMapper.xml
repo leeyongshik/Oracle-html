@@ -30,5 +30,17 @@
 		</if>
 		
 		
+<!-- 	<choose>
+		<when test="조건">
+			name like '%'||#{name}||'%'
+		</when>
+		<otherwise>
+			id like '%'||#{id}||'%'
+		</otherwise>
+	</choose> -->
+	
+	
+	<!-- select * from usertable where ${colNum} like '%'||#{name}||'%' -->
+	
 	</select>
 </mapper>

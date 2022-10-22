@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@page import="member.bean.MemberDTO"%>
+
 <%@page import="member.dao.MemberDAO"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.net.URLEncoder"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,18 +19,29 @@
 		
 		
 		//DB
-		MemberDAO memberDAO = MemberDAO.getInstance(); // 싱글톤
-		String name = memberDAO.memberLogin(id, pwd);
+		MemberDAO memberDAO = MemberDAO.getInstance();// 싱글톤
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pwd",pwd);
+		
+		String name = memberDAO.memberLogin(map);
 		 %>
 		
 
-		
+		//페이지 이동
 		<% 
-		if(name == null){%>
-			아이디 또는 비밀번호가 틀렸습니다.
-		<%}else {%>
-			<%= name %>님 로그인에 성공하셨습니다.
+		if(name == null){
+			//페이지 이동 
+			response.sendRedirect("loginFail.jsp");
+		}else {
+			//response.sendRedirect("loginOk.jsp?name=" + URLEncoder.encode(name,"UTF-8"));
+			//세션
+			//HttpSession session = request.getSession(); // 세션 생성
 			
-		<%}%>
+			session.setAttribute("memName", name);
+			//페이지 이동
+			response.sendRedirect("loginOk.jsp");
+			
+		}%> 
 </body>
 </html>
