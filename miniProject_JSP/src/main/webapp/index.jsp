@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- <%@ page session="false" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +11,17 @@
 <h3>메인화면</h3>
 <hr>
 <h5>
-<a href="http://localhost:8080/miniProject_JSP/member/writeForm.jsp">회원가입</a><br>
-<a href="http://localhost:8080/miniProject_JSP/member/loginForm.jsp">로그인</a><br>
-<a href="http://localhost:8080/miniProject_JSP/member/logout.jsp">로그아웃</a><br>
-<a href="http://localhost:8080/miniProject_JSP/board/boardWriteForm.jsp">글쓰기</a><br>
-<a href="http://localhost:8080/miniProject_JSP/board/boardList.jsp">목록</a><br>
+<br>
+ <% if(session.getAttribute("memName") != null){ %>
+	<a href="http://localhost:8080/miniProject_JSP/member/logout.jsp">로그아웃</a><br>
+	<a href="http://localhost:8080/miniProject_JSP/board/boardWriteForm.jsp">글쓰기</a><br>
+	<a href="http://localhost:8080/miniProject_JSP/board/boardList.jsp?pg=1">목록</a><br>
+<% } %>
+<% if(session.getAttribute("memName") == null || !request.isRequestedSessionIdValid()){ %>
+	<a href="http://localhost:8080/miniProject_JSP/member/writeForm.jsp">회원가입</a><br>
+	<a href="http://localhost:8080/miniProject_JSP/member/loginForm.jsp">로그인</a><br>
+	<a href="http://localhost:8080/miniProject_JSP/board/boardList.jsp?pg=1">목록</a><br>
+<% } %> 
 </h5>
 </body>
 </html>

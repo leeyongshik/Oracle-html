@@ -80,7 +80,9 @@
 			</tr>
 			
 			<tr>
-				<td colspan="4" height="150px" valign="top"><pre style="white-space: pre-wrap;"><%=list.get(i).getContent()%></pre></td>
+				<td colspan="4" height="150px" valign="top">
+					<pre style="white-space: pre-wrap;"><%=list.get(i).getContent()%></pre>
+				</td>
 			</tr>
 			
 	

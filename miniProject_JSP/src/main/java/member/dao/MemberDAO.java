@@ -42,13 +42,13 @@ public class MemberDAO {
 	}
 
 
-	public String memberLogin(Map<String, String> map) {
+	public MemberDTO memberLogin(Map<String, String> map) {
 		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		MemberDTO memberDTO = sqlSession.selectOne("memberSQL.memberLogin", map);
 		sqlSession.close();
 		
-		if(memberDTO != null) return memberDTO.getName();
+		if(memberDTO != null) return memberDTO;
 		else return null;
 		
 	}

@@ -3,6 +3,7 @@
     
 
 <%@page import="member.dao.MemberDAO"%>
+<%@page import="member.bean.MemberDTO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.net.URLEncoder"%>
@@ -24,12 +25,17 @@
 		map.put("id", id);
 		map.put("pwd",pwd);
 		
-		String name = memberDAO.memberLogin(map);
+		MemberDTO memberDTO = memberDAO.memberLogin(map);
+		
+		
+		String name = memberDTO.getName();
+		String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
+		
 		 %>
 		
 
 		//페이지 이동
-		<% 
+ 		<% 
 		if(name == null){
 			//페이지 이동 
 			response.sendRedirect("loginFail.jsp");
@@ -38,10 +44,12 @@
 			//세션
 			//HttpSession session = request.getSession(); // 세션 생성
 			
+			session.setAttribute("memId", id);
 			session.setAttribute("memName", name);
+			session.setAttribute("memEmail", email);
 			//페이지 이동
 			response.sendRedirect("loginOk.jsp");
 			
-		}%> 
+		}%>  
 </body>
 </html>

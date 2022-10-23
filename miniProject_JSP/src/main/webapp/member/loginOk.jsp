@@ -8,13 +8,18 @@
 </head>
 <body>
 
-<% 
+ <% 
 	//String name = request.getParameter("name"); 
 	String name = (String)session.getAttribute("memName");
+	String id = (String)session.getAttribute("memId");
+	String email = (String)session.getAttribute("memEmail");
 %>
 
-<%= name %>님 로그인에 성공하셨습니다.
+<%= name %>님 로그인에 성공하셨습니다. 
+<br><%=id %>
+<br><%=email %>
 <br>
 <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+<input type="button" value="메인페이지" onclick="location.href='../index.jsp'">
 </body>
 </html>

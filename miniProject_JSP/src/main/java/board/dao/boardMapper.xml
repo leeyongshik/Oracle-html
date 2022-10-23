@@ -4,7 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="boardSQL">
-
+	<insert id="write" parameterType="board">
+		INSERT INTO board(seq, id, name, email, subject, content, ref) 
+		VALUES (seq_board.nextval,#{id},#{name},#{email},#{subject},#{content},seq_board.nextval)
+	</insert>
+	<select id="boardList" resultType="board">
+		SELECT * FROM (SELECT rownum rn, tt.* FROM (SELECT seq, name, email, subject, content, to_char(logtime,'YYYY-MM-DD') as logtime FROM board order by seq DESC) tt) where rn >= #{startNum} and rn <![CDATA[ <= ]]> #{endNum}
+	</select>
+	<select id="getTotalA" resultType="board">
+		select * from board
+	</select>
 	
 
 </mapper>

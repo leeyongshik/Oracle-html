@@ -6,7 +6,8 @@
 <mapper namespace="memberSQL">
 
 	<insert id="memberWrite" parameterType="member">
-		insert into member values(#{name},#{id},#{pwd},#{gender},#{tel1},#{tel2},#{tel3},#{email1},#{email2},#{zipcode},#{addr1},#{addr2},sysdate)
+		insert into member(name, id, pwd, gender, email1, email2, tel1, tel2, tel3, zipcode, addr1, addr2, logtime)
+		 values(#{name},#{id},#{pwd},#{gender},#{email1},#{email2},#{tel1},#{tel2},#{tel3},#{zipcode},#{addr1},#{addr2},sysdate)
 	</insert>
 	
 	<select id="memberLogin" parameterType="java.util.Map" resultType="member">
