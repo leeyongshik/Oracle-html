@@ -23,6 +23,7 @@
 	<a href="http://localhost:8080/miniProject_JSP/board/boardList.jsp?pg=1">목록</a><br>
 <% } %> 
 </h5>
+<br>
 </body>
 </html>
 <!-- 
