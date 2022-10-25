@@ -32,15 +32,15 @@ public class BoardDAO {
 	}
 	
 	
-	public int write(BoardDTO boardDTO) {
+	public void write(BoardDTO boardDTO) {
 		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		int su = sqlSession.insert("boardSQL.write",boardDTO);
+		sqlSession.insert("boardSQL.write",boardDTO);
 
 		sqlSession.commit();
 		sqlSession.close();
 		
-		return su;
+		
 		
 	}
 	
@@ -58,6 +58,23 @@ public class BoardDAO {
 		list = sqlSession.selectList("boardSQL.boardList", map);
 		sqlSession.close();
 		return list;
+	}
+	
+	public void boardcount(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("boardSQL.boardcount",seq);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
+	
+	public BoardDTO boardListOne(int seq) {
+		BoardDTO boardDTO = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		boardDTO = sqlSession.selectOne("boardSQL.boardListOne",seq);
+		sqlSession.close();
+		
+		return boardDTO;
 	}
 	
 }

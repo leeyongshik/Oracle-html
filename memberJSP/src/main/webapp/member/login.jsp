@@ -38,7 +38,18 @@
 			//세션
 			//HttpSession session = request.getSession(); // 세션 생성
 			
-			session.setAttribute("memName", name);
+			//session.setAttribute("memName", name);
+			
+			//쿠키
+			Cookie cookie = new Cookie("memName", name);
+			cookie.setMaxAge(30 * 60 );//초 -> 30분
+			response.addCookie(cookie);//클라이언트에게 보내기
+			
+			//쿠키
+			Cookie cookie2 = new Cookie("memId", id);
+			cookie2.setMaxAge(30*60);//초
+			response.addCookie(cookie2);//클라이언트에게 보내기
+			
 			//페이지 이동
 			response.sendRedirect("loginOk.jsp");
 			

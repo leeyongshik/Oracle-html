@@ -11,10 +11,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	pre{
-		white-space: pre-wrap;
-		width: 500px;
-	}
 	table{
 	border : 1px solid black;
 	border-collapse : collapse;
@@ -33,12 +29,14 @@
 </head>
 <body>
 	<h1 align="left">글목록</h1>
+	<input type="button" value="메인페이지" onclick="location.href='../index.jsp'">
+	<br><br>
 	<% 
 	int pg = Integer.parseInt(request.getParameter("pg"));
 	
 	//페이징 처리 -1페이지당 3개씩
-	int endNum = pg*3;
-	int startNum = endNum -2;
+	int endNum = pg*5;
+	int startNum = endNum -4;
 	
 	
 	BoardDAO boardDAO = BoardDAO.getInstance();
@@ -50,63 +48,53 @@
 	List<BoardDTO> list = boardDAO.boardList(map); 
 	
 	int totalA = boardDAO.getTotalA();//총글수
-	int totalPage = (totalA +2) /3;
+	int totalPage = (totalA +4) /5;
 	 %>
 	
 <% if(list !=null) { %>
-	
+		<table border="1" style="align-self: center;">
+			<tr>
+				<td width = "100px" align="center">글번호</td>
+				<td width = "350px" align="center">제목</td>
+				<td width = "100px" align="center">작성자</td>
+				<td width = "120px" align="center">작성일</td>
+				<td width = "80px" align="center">조회수</td>
+			</tr>
+		
 		<%
 		for(int i=0; i<list.size();i++){
 		%>
-		<div align="center">
-		<table border="1" style="align-self: center;">
 			<tr>
-				<td width="100px" align="center">작성자</td>
-				<td width="150px" align="center"><%=list.get(i).getName()%></td>
-				<td width="100px" align="center">작성일 / 번호</td>
-				<td width="150px" align="center"><%=list.get(i).getLogtime()%> / <%=list.get(i).getSeq()%> </td>
+				<td align="center"><%=list.get(i).getSeq()%></td>
+				<td ><a href="boardcount.jsp?seq=<%=list.get(i).getSeq()%>"><%=list.get(i).getSubject()%></a></td>
+				<td align="center"><%=list.get(i).getId()%></td>
+				<td align="center"><%=list.get(i).getLogtime()%> </td>
+				<td align="center"><%=list.get(i).getHit()%> </td>
 			</tr>
 			
-			<tr>
-				<td align="center">이메일</td>
-				<td colspan="3"><%=list.get(i).getEmail()%></td>
-			</tr>
-			
-			
-			<tr>
-				<td align="center">제목</td>
-				<td colspan="3"><%=list.get(i).getSubject()%></td>
-			</tr>
-			
-			<tr>
-				<td colspan="4" width="500" height="150" valign="top">
-					
-					<p style="white-space: normal; width: 500px;">
-					<%=list.get(i).getContent()%>
-					</p>
-					
-				</td>
-			</tr>
 			
 	
-		</table>
-		<br>
-		<hr>
-		<br>
 		
 		<%
 		}
 		%>
+		
 
 <% } %>
-<!-- 페이지 번호 -->
-<% for ( int i = 1; i <= totalPage; i++){ %>
-	<% if(i == pg) {  %>
-		<a id="currentPaging" href="boardList.jsp?pg=<%=i %>"><%= i %></a>
-	 <% }else { %>
-	 	<a id="paging" href="boardList.jsp?pg=<%=i %>"><%= i %></a>
-	<% } %>
-<% } %>
-		</div>
+			<tr>
+				<td colspan="5" align="center">
+					<!-- 페이지 번호 -->
+					<% for ( int i = 1; i <= totalPage; i++){ %>
+						<% if(i == pg) {  %>
+							<a id="currentPaging" href="boardList.jsp?pg=<%=i %>"><%= i %></a>
+						 <% }else { %>
+						 	<a id="paging" href="boardList.jsp?pg=<%=i %>"><%= i %></a>
+						<% } %>
+					<% } %>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
 </body>
 </html>

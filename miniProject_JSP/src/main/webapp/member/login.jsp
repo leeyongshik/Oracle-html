@@ -27,29 +27,23 @@
 		
 		MemberDTO memberDTO = memberDAO.memberLogin(map);
 		
-		
-		String name = memberDTO.getName();
-		String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
-		
 		 %>
 		
 
 		//페이지 이동
  		<% 
-		if(name == null){
-			//페이지 이동 
-			response.sendRedirect("loginFail.jsp");
-		}else {
+		if(memberDTO != null){
 			//response.sendRedirect("loginOk.jsp?name=" + URLEncoder.encode(name,"UTF-8"));
 			//세션
 			//HttpSession session = request.getSession(); // 세션 생성
-			
-			session.setAttribute("memId", id);
-			session.setAttribute("memName", name);
-			session.setAttribute("memEmail", email);
+			session.setAttribute("memId", memberDTO.getId());
+			session.setAttribute("memName", memberDTO.getName());
+			session.setAttribute("memEmail", memberDTO.getEmail1() + "@" + memberDTO.getEmail2());
 			//페이지 이동
 			response.sendRedirect("loginOk.jsp");
-			
+			//페이지 이동 
+		}else {
+			response.sendRedirect("loginFail.jsp");
 		}%>  
 </body>
 </html>

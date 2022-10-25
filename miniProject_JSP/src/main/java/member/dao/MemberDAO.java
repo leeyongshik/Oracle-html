@@ -48,8 +48,7 @@ public class MemberDAO {
 		MemberDTO memberDTO = sqlSession.selectOne("memberSQL.memberLogin", map);
 		sqlSession.close();
 		
-		if(memberDTO != null) return memberDTO;
-		else return null;
+		return memberDTO;
 		
 	}
 	

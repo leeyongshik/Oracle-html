@@ -1,7 +1,7 @@
-<%@page import="board.dao.BoardDAO"%>
-<%@page import="board.bean.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="board.bean.BoardDTO"%>
+<%@page import="board.dao.BoardDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +27,10 @@ boardDTO.setContent(content);
 
 
 BoardDAO boardDAO = BoardDAO.getInstance();
-int su = boardDAO.write(boardDTO);
+boardDAO.write(boardDTO);
 
-if(su==1) out.print("작성하신 글을 저장하였습니다.");
-else out.print("실패");
 %>
+작성하신 글을 저장하였습니다.
 <br>
 <input type="button" value="메인페이지" onclick="location.href='../index.jsp'">
 </body>

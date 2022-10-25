@@ -9,11 +9,16 @@
 		VALUES (seq_board.nextval,#{id},#{name},#{email},#{subject},#{content},seq_board.nextval)
 	</insert>
 	<select id="boardList" resultType="board">
-		SELECT * FROM (SELECT rownum rn, tt.* FROM (SELECT seq, name, email, subject, content, to_char(logtime,'YYYY-MM-DD') as logtime FROM board order by seq DESC) tt) where rn >= #{startNum} and rn <![CDATA[ <= ]]> #{endNum}
+		SELECT * FROM (SELECT rownum rn, tt.* FROM (SELECT seq, subject, id, to_char(logtime,'YYYY-MM-DD') as logtime, hit FROM board order by seq DESC) tt) where rn >= #{startNum} and rn <![CDATA[ <= ]]> #{endNum}
 	</select>
 	<select id="getTotalA" resultType="board">
 		select * from board
 	</select>
-	
+	<update id="boardcount" parameterType="int" >
+		UPDATE board set hit = hit+1 where seq=#{seq}
+	</update>
+	<select id="boardListOne" parameterType="int" resultType="board">
+		select * from board where seq=#{seq}
+	</select>
 
 </mapper>

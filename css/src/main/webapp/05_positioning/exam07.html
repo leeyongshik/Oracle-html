@@ -4,12 +4,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+/* span{
+	visibility: hidden;
+} */
 
+.item span{
+	visibility: hidden;
+}
+.item:hover span{
+	visibility: visible;
+	color: red;
+}
+/* span:hover{
+	opacity : 100;
+	color: red;
+} 
+li:hover span{
+	visibility: visible;
+	color : red;
+} */
 </style>
 </head>
 <body>
-<h3></h3>
+<h3>다음 빈 곳에 숨은 단어?</h3>
 <hr>
-
+<ul>
+	<li>I (<span class="item"><span>love</span></span>) you.
+	<li>CSS is Cascading
+		(<span class="item"><span>Style</span></span>) sheet.
+	<li>응답하라 (<span class="item"><span>1988</span></span>)
+</ul>
 </body>
 </html>
+
+<!--  숨겨진 요소 이로 마우스를 가져다 놓을 수 없다. -->
+<!--  중첩을 잡아야 한다. -->

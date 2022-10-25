@@ -5,19 +5,19 @@ import lombok.Setter;
 
 @Setter@Getter
 public class BoardDTO {
-	int seq;
-    String id;
-    String name;
-    String email;
-    String subject;
-    String content; 
+	private int seq;
+    private String id;
+    private String name;
+    private String email;
+    private String subject;
+    private String content; 
 
-    int ref;
-    int lev;
-    int step;
-    int pseq;
-    int reply;
+    private int ref;
+    private int lev;
+    private int step;
+    private int pseq;
+    private int reply;
 
-    int hit;
-    String logtime;
+    private int hit;
+    private String logtime;
 }
