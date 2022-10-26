@@ -30,8 +30,12 @@ BoardDAO boardDAO = BoardDAO.getInstance();
 boardDAO.write(boardDTO);
 
 %>
-작성하신 글을 저장하였습니다.
-<br>
-<input type="button" value="메인페이지" onclick="location.href='../index.jsp'">
+<script type="text/javascript">
+	window.onload=function(){
+		
+		alert("작성하신 글을 저장하였습니다.")
+		location.href = "boardList.jsp?pg=1";
+	}
+</script>
 </body>
 </html>
