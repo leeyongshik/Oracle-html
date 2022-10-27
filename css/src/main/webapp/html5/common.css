@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* hidden css*/
+hr{
+	display: none;
+}
+.blind, legend{
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	left : 0;
+	top: -1000em;
+}
+/* skip css*/
+.skip a{
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: -1000em;
+	z-index: 9999;/*가장먼저 실행해라*/
+	width: 100%;
+	background-color: navy;
+	color : white;
+	font: bold 1.3em Tahoma, sans-serif;
+	text-decoration: none;
+	text-align: center;
+}
+.skip a:hover, .skip a:active, .skip a:focus{
+	top: 0;
+	padding: 0.5em 0;
+}

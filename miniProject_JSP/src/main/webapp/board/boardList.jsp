@@ -32,6 +32,8 @@
 	boardPaging.setTotalA(totalA);
 
 	boardPaging.makePagingHTML();
+	
+	String id = (String)session.getAttribute("memId");
 
 	 %>
 <html>
@@ -46,15 +48,16 @@
 	#currentPaging{
 		border: 1px solid blue;
 		padding: 2px 8px;
-		margin: 2px;
+		margin: 5px;
 		color : red;
 		text-decoration: underline;
 		cursor: pointer;
+		font-size: 15pt;
 	}
 	#paging{
 		cursor: pointer;
 		padding : 2px 8px;
-		margin : 2px;
+		margin : 5px;
 		color : black;
 		text-decoration: none;
 		font-size: 15pt;
@@ -66,11 +69,12 @@
 	.subjectA:hover{
 		color: green;
 		text-decoration: underline;
+		cursor: pointer;
 	} 
 	#pagingDiv{
-		/* border: 1px solid red;  */
 		width: 800px; 
 		text-align: center;
+		margin-top: 10px;
 	}
 	#mainpage{
 		float: left;
@@ -99,7 +103,7 @@
 		%>
 		<tr>
 				<td align="center"><%=list.get(i).getSeq()%></td>
-				<td ><a class="subjectA" onclick="isLogin('<%=list.get(i).getSeq()%>')"><%=list.get(i).getSubject()%></a></td>
+				<td ><a class="subjectA" onclick="isLogin('<%=id%>',<%=list.get(i).getSeq()%>,<%=pg%>)"><%=list.get(i).getSubject()%></a></td>
 				<td align="center"><%=list.get(i).getId()%></td>
 				<td align="center"><%=list.get(i).getHit()%> </td>
 				<td align="center"><%=list.get(i).getLogtime()%> </td>
@@ -114,20 +118,19 @@
 	<script type="text/javascript">
 		function boardPaging(pg) {location.href="boardList.jsp?pg=" + pg;}
 		
-		function isLogin(seq){ 
-	         var id = '<%=(String)session.getAttribute("memId")%>';
+		function isLogin(id,seq,pg){ 
+		
 
-	          if(id=="null"){ 
-	             alert("로그인이 필요한 항목입니다."); 
-	          }
-	          else{
-	        	  
-	      			const urlParameter = window.location.search;
-	      			console.log(urlParameter);
-	      			location.href="boardcount.jsp" + urlParameter + "&seq="+seq;
-	      		
-	          }
-	    }  
+			if(id=="null"){ 
+				alert("로그인이 필요한 항목입니다."); 
+				location.href="../member/loginForm.jsp";
+			}
+			else{
+				/* const urlParameter = window.location.search;
+				console.log(urlParameter); */
+				location.href="boardView.jsp?pg="+pg+"&seq="+seq;
+			}
+		}  
 		
 	</script>
 </body>
