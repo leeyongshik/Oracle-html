@@ -22,7 +22,7 @@
 	</tr>
 	<tr>
 		<td align="center">\${25 div 3}</td>
-		<td align="center">${25 div 3}</td>
+		<!-- <td align="center">${25 div 3}</td>  사용 가능-->
 	</tr>
 	<tr>
 		<td align="center">\${25 % 3}</td>
@@ -38,7 +38,7 @@
 	</tr>
 		<tr>
 		<td align="center">\${ 25 ne 3 }</td>
-		<td align="center">${ 25 ne 3 }</td>
+		<!-- <td align="center">${ 25 ne 3 }</td> 사용가능 -->
 	</tr>
 		<tr>
 		<td align="center">\${ header['host'] }</td>
