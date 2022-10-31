@@ -68,14 +68,14 @@
 				<td width = "80px" align="center">조회수</td>
 				<td width = "120px" align="center">작성일</td>
 			</tr>
-		<c:forEach var="data" items="${prequestScope.list}">
+		<c:forEach var="boardDTO" items="${requestScope.list}">
 		
 		<tr>
-				<td align="center">${data.seq}</td>
-				<td ><a class="subjectA" onclick="isLogin('${requestScope.id}',${data.seq},${requestScope.pg})">${data.subject}</a></td>
-				<td align="center">${data.id}</td>
-				<td align="center">${data.hit} </td>
-				<td align="center">${data.logtime} </td>
+				<td align="center">${boardDTO.seq}</td>
+				<td ><a class="subjectA" onclick="isLogin('${requestScope.id}',${boardDTO.seq},${requestScope.pg})">${boardDTO.subject}</a></td>
+				<td align="center">${boardDTO.id}</td>
+				<td align="center">${boardDTO.hit} </td>
+				<td align="center">${boardDTO.logtime} </td>
 			</tr>
 		</c:forEach>
 		
@@ -84,22 +84,22 @@
 		</table>
 		
 		<input type="button" value="메인페이지" id="mainpage" onclick="location.href='../index.jsp'">
-		<%-- <div id ="pagingDiv"><%=boardPaging.getPagingHTML() %></div> --%>
+		 <div id ="pagingDiv">${requestScope.paging}</div>
 		
 	<script type="text/javascript">
-		function boardPaging(pg) {location.href="boardList.jsp?pg=" + pg;}
+		function boardPaging(pg) {location.href="boardList.do?pg=" + pg;}
 		
 		function isLogin(id,seq,pg){ 
-		
+			
 
 			if(id=="null"){ 
 				alert("로그인이 필요한 항목입니다."); 
-				location.href="../member/loginForm.jsp";
+				location.href="../member/loginForm.do";
 			}
 			else{
 				/* const urlParameter = window.location.search;
 				console.log(urlParameter); */
-				location.href="boardView.jsp?pg="+pg+"&seq="+seq;
+				location.href="boardView.do?pg="+pg+"&seq="+seq;
 			}
 		}  
 		

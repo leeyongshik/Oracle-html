@@ -42,13 +42,15 @@ public class BoardListService implements CommandProcess {
 		boardPaging.setTotalA(totalA);
 
 		boardPaging.makePagingHTML();
+		StringBuffer paging = boardPaging.getPagingHTML();
 		
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("memId");
+		String id = "홍";
 		
 		request.setAttribute("list", list);
 		request.setAttribute("id", id);
 		request.setAttribute("pg", pg);
+		request.setAttribute("paging", paging);
 		return "/board/boardList.jsp";
 	}
 
