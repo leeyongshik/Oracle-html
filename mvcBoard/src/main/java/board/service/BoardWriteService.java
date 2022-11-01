@@ -2,6 +2,7 @@ package board.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
@@ -15,6 +16,9 @@ public class BoardWriteService implements CommandProcess {
 		
 		String subject = request.getParameter("subject"); 
 		String content = request.getParameter("content");
+		
+		HttpSession session = request.getSession();
+		
 		String id = "jk1405";
 		String name = "이용식";
 		String email = "jk1405@naver.com";

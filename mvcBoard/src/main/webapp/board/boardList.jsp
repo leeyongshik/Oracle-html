@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -56,7 +55,7 @@
 	
 	
 	
-<c:if test="${prequestScope.list != 'null'}">
+<c:if test="${requestScope.list != null}">
 	
 
 		<table border="1" cellpadding="5" frame="hsides" rules="rows">
@@ -80,11 +79,11 @@
 		</c:forEach>
 		
 
-</c:if>
 		</table>
 		
 		<input type="button" value="메인페이지" id="mainpage" onclick="location.href='../index.jsp'">
 		 <div id ="pagingDiv">${requestScope.paging}</div>
+</c:if>
 		
 	<script type="text/javascript">
 		function boardPaging(pg) {location.href="boardList.do?pg=" + pg;}

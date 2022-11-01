@@ -20,7 +20,10 @@ public class BoardListService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		
-		//페이징 처리 -1페이지당 3개씩
+		HttpSession session = request.getSession();
+		String id = "홍";
+		
+		//페이징 처리 -1페이지당 5개씩
 		int endNum = pg*5;
 		int startNum = endNum -4;
 		
@@ -40,12 +43,9 @@ public class BoardListService implements CommandProcess {
 		boardPaging.setPageBlock(3);
 		boardPaging.setPageSize(5);
 		boardPaging.setTotalA(totalA);
-
 		boardPaging.makePagingHTML();
 		StringBuffer paging = boardPaging.getPagingHTML();
 		
-		HttpSession session = request.getSession();
-		String id = "홍";
 		
 		request.setAttribute("list", list);
 		request.setAttribute("id", id);
