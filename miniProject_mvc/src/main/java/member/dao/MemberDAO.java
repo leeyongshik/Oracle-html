@@ -60,4 +60,23 @@ public class MemberDAO {
 		sqlSession.close();
 		return exist;
 	}
+
+
+	public MemberDTO search(String id) {
+		MemberDTO memberDTO = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		memberDTO = sqlSession.selectOne("memberSQL.search",id);
+		sqlSession.close();
+		
+		return memberDTO;
+	}
+
+
+	public void update(MemberDTO memberDTO) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.selectOne("memberSQL.update",memberDTO);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
 }

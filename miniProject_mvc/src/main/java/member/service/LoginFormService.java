@@ -10,8 +10,8 @@ public class LoginFormService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-		request.setAttribute("display", "/member/loginForm.jsp");
-		return "/index.jsp";
+		
+		return "/member/loginForm.jsp";
 	}
 
 }

@@ -20,7 +20,7 @@
 </head>
 <body>
 	<h1>로그인</h1>
-	<form action="/mvcMember/member/login.do" name="loginForm" id="loginForm" method="post">
+	<form name="loginForm">
 		<table border="1" cellpadding="5">
 			<tr >
 				<td width="100" align="center">아이디</td>
@@ -37,28 +37,51 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="로그인" onclick="checkLogin()"/>
+					<input type="button" value="로그인" id="loginBtn"/>
 					<input type="button" value="회원가입" onClick="location.href='writeForm.do';"/>
 				</td>
 			</tr>
 		</table>
-		
+		<div id = "loginResult"></div>
 	</form>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
-	<script type="text/javascript">
-	$('#id').focusout(function(){
-		if($('#id').val() == '') {
-			$('#idDiv').text('아이디를 입력하세요.');
-		}
-	});
-		
-	$('#pwd').focusout(function(){
-		if($('#pwd').val() == '') {
-			$('#pwdDiv').text('비밀번호를 입력하세요.');
-		}
-	});
-
 	
+	
+	
+	<script type="text/javascript">
+	$('#loginBtn').click(function(){
+		$('#idDiv').empty();
+		$('#pwdDiv').empty();
+		if($('#id').val() == ''){
+			$('#idDiv').text('아이디를 입력하세요.');
+			$('#id').focus;
+		}else if($('#pwd').val() == ''){
+			$('#pwdDiv').text('비밀번호를 입력하세요.');
+			$('#pwd').focus;
+		}else {
+			$.ajax({
+				url : '/miniProject_mvc/member/login.do',
+				type : 'post',
+				
+				//data : 'id=' + $('#id').val() + '&pwd=' + $('#pwd').val(), // 주소창에 넣는 것 처럼
+				data : {'id' : $('#id').val(), 'pwd' : $('#pwd').val() }, // json 표기법
+				dataType:'text',
+				success: function(data){
+					data = data.trim();
+					if(data == 'ok'){
+						location.href='../index.jsp';
+					}else if(data == 'fail'){
+						$('#loginResult').text('아이디 또는 비밀번호가 맞지 않습니다.');
+						$('#loginResult').css('font-size','12pt');
+					}
+				},
+				error : function(err){
+					console.log(err);
+				}
+			});
+		}
+	});
+			
 	</script>
 </body>
 </html>

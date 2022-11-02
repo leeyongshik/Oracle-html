@@ -20,7 +20,7 @@
 </head>
 <body>
 	<h3>회원가입</h3>
-	<form name="writeForm" method="post" action="/mvcMember/member/write.do">
+	<form name="writeForm" id="writeForm">
 		<table border ="1" width="500" cellpadding="10">
 			<tr>
 				<td width="100" align="center">이름</td>
@@ -32,8 +32,8 @@
 			<tr>
 				<td width="100" align="center">아이디</td>
 				<td>
-					<input type="text" name="id" id="id" placeholder="아이디 입력" onchange="countReset()"/>
-					<input type="text" name="check">
+					<input type="text" name="id" id="id" placeholder="아이디 입력"/>
+					<input type="text" name="check" id="check">
 					<div id="idDiv"></div>
 				</td>
 			</tr>
@@ -103,7 +103,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="회원가입" onclick="checkWrite()"/>
+					<input type="button" value="회원가입" id="writeBtn"/>
 					<input type="reset" value="다시작성">
 				</td>
 			</tr>

@@ -8,7 +8,7 @@ import com.control.CommandProcess;
 import member.bean.MemberDTO;
 import member.dao.MemberDAO;
 
-public class WriteService implements CommandProcess {
+public class UpdateService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -40,9 +40,9 @@ public class WriteService implements CommandProcess {
 		memberDTO.setAddr2(addr2);
 		
 		MemberDAO memberDAO = MemberDAO.getInstance();
-		int su = memberDAO.memberWrite(memberDTO);
+		memberDAO.update(memberDTO);
 		
-		return "/member/writeOk.jsp";
+		return "/member/update.jsp";
 	}
 
 }
