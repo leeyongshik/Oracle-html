@@ -13,6 +13,8 @@ public class UpdateFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		
+		/*
 		HttpSession session = request.getSession(); // 세션 생성
 		String id = (String) session.getAttribute("memId");
 		
@@ -21,6 +23,9 @@ public class UpdateFormService implements CommandProcess {
 		
 		request.setAttribute("memberDTO", memberDTO);
 		request.setAttribute("display", "/member/updateForm.jsp");
+		return "/index.jsp";
+		*/
+		request.setAttribute("display", "/member/updateForm2.jsp");
 		return "/index.jsp";
 	}
 

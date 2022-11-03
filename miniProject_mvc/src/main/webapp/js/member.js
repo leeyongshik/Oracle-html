@@ -75,15 +75,11 @@ $('form[name="writeForm"] #id').focusout(function(){
 //회원 정보 수정
 $('#updateBtn').click(function(){
 	$('#nameDiv').empty();
-	$('#idDiv').empty();
 	$('#pwdDiv').empty();
 	
 	if($('#name').val() == ''){
 			$('#nameDiv').text('이름을 입력하세요.');
 			$('#name').focus;
-	}else if($('#id').val() == ''){
-			$('#idDiv').text('아이디를 입력하세요.');
-			$('#id').focus;
 	}else if($('#pwd').val() == ''){
 			$('#pwdDiv').text('비밀번호를 입력하세요.');
 			$('#pwd').focus;
@@ -101,7 +97,7 @@ $('#updateBtn').click(function(){
 			success: function(){
 					alert("회원정보 수정 성공");
 					sessionStorage.clear();
-					location.href = '/miniProject_mvc/member/logout.do';
+					location.href = '/miniProject_mvc/index.jsp';
 				},
 				error : function(err){
 					console.log(err);

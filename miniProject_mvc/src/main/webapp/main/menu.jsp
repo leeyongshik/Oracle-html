@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	.mainnav{
-   background-color: #483D8B;
+   background-color: #00C43B;
    list-style: none;
    color: #ffffff;
 }
@@ -22,7 +22,7 @@
 .mainnav li a {
    display: block;
    padding: 0 13px; /*  위아래, 좌우 */
-   background-color: #483D8B;
+   background-color: #00C43B;
    color: #ffffff;
    font: bold 16px/40px 'Nanum Gothic', sans-serif; 
       /*폰트의 굵기 | 글자의 크기 | /line-height 줄간격 |  글꼴  , 앞에 글꼴없으면 다음 글꼴*/
@@ -36,8 +36,8 @@
 </style>
 <ul class = "mainnav">
 	<c:if test="${sessionScope.memId != null }">
-	<li><a href="">글쓰기</a></li>
+	<li><a href="/miniProject_mvc/board/boardWriteForm.do">글쓰기</a></li>
 	</c:if>
-	<li><a href="">목록</a></li>
+	<li><a href="/miniProject_mvc/board/boardList.do?pg=1">목록</a></li>
 	<li></li>
 </ul>

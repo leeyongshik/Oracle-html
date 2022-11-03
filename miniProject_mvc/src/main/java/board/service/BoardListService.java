@@ -51,7 +51,9 @@ public class BoardListService implements CommandProcess {
 		request.setAttribute("id", id);
 		request.setAttribute("pg", pg);
 		request.setAttribute("paging", paging);
-		return "/board/boardList.jsp";
+		
+		request.setAttribute("display", "/board/boardList.jsp");
+		return "/index.jsp";
 	}
 
 }

@@ -2,6 +2,7 @@ package member.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
@@ -41,6 +42,9 @@ public class UpdateService implements CommandProcess {
 		
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.update(memberDTO);
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
 		
 		return "/member/update.jsp";
 	}
