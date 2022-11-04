@@ -23,35 +23,7 @@ public class BoardListService implements CommandProcess {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("memId");
 		
-		//페이징 처리 -1페이지당 5개씩
-		int endNum = pg*5;
-		int startNum = endNum -4;
-		
-		BoardDAO boardDAO = BoardDAO.getInstance();
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
-		
-		List<BoardDTO> list = boardDAO.boardList(map); 
-		
-		int totalA = boardDAO.getTotalA();//총글수
-		int totalPage = (totalA +4) /5;
-
-		BoardPaging boardPaging = new BoardPaging();
-		boardPaging.setCurrentPage(pg);
-		boardPaging.setPageBlock(3);
-		boardPaging.setPageSize(5);
-		boardPaging.setTotalA(totalA);
-		boardPaging.makePagingHTML();
-		StringBuffer paging = boardPaging.getPagingHTML();
-		
-		
-		request.setAttribute("list", list);
-		request.setAttribute("id", id);
 		request.setAttribute("pg", pg);
-		request.setAttribute("paging", paging);
-		
 		request.setAttribute("display", "/board/boardList.jsp");
 		return "/index.jsp";
 	}

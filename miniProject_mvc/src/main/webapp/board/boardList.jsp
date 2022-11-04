@@ -50,15 +50,11 @@
 </style>
 </head>
 <body>
-	<h1 align="left">글목록</h1>
-	<hr>
 	
 	
-	
-<c:if test="${requestScope.list != null}">
-	
-
-		<table border="1" cellpadding="5" frame="hsides" rules="rows">
+	<h3 align="left">글목록</h3>
+	<input type="hidden" id="pg" value="${pg}">
+		<table border="1" cellpadding="5" frame="hsides" rules="rows" id="boardListTable">
 			
 			<tr>
 				<td width = "100px" align="center">글번호</td>
@@ -67,24 +63,15 @@
 				<td width = "80px" align="center">조회수</td>
 				<td width = "120px" align="center">작성일</td>
 			</tr>
-		<c:forEach var="boardDTO" items="${requestScope.list}">
-		
-		<tr>
-				<td align="center">${boardDTO.seq}</td>
-				<td ><a class="subjectA" onclick="isLogin('${requestScope.id}',${boardDTO.seq},${requestScope.pg})">${boardDTO.subject}</a></td>
-				<td align="center">${boardDTO.id}</td>
-				<td align="center">${boardDTO.hit} </td>
-				<td align="center">${boardDTO.logtime} </td>
-			</tr>
-		</c:forEach>
-		
-
+			
+			<!-- 동적처리 -->
+			
+			
+			
 		</table>
 		
 		<input type="button" value="메인페이지" id="mainpage" onclick="location.href='../index.jsp'">
-		 <div id ="pagingDiv">${requestScope.paging}</div>
-</c:if>
-		
+		 <div id ="pagingDiv">${paging}</div>
 	<script type="text/javascript">
 		function boardPaging(pg) {location.href="boardList.do?pg=" + pg;}
 		
@@ -103,5 +90,7 @@
 		}  
 		
 	</script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<script type="text/javascript" src="../js/boardList.js"></script>
 </body>
 </html>
