@@ -20,5 +20,14 @@
 	<select id="boardListOne" parameterType="int" resultType="board">
 		select * from board where seq=#{seq}
 	</select>
+	<select id="detailedPage" parameterType="int" resultType="board">
+		select * from board where seq=#{seq}
+	</select>
+	<update id="boardUpate" parameterType="java.util.Map" >
+		UPDATE board set subject = #{subject},content = #{content}  where seq=#{seq}
+	</update>
+	<delete id="boardDelete" parameterType="int">
+		delete from board where seq=#{seq}
+	</delete>
 
 </mapper>

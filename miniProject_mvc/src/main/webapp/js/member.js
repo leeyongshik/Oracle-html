@@ -96,7 +96,6 @@ $('#updateBtn').click(function(){
 			data : $('#updateForm').serialize(),// 주소창과 같이 데이터 담기
 			success: function(){
 					alert("회원정보 수정 성공");
-					sessionStorage.clear();
 					location.href = '/miniProject_mvc/index.jsp';
 				},
 				error : function(err){

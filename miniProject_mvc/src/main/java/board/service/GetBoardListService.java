@@ -24,10 +24,6 @@ public class GetBoardListService implements CommandProcess {
 		//데이터
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		
-		//DB
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("memId");
-		
 		//페이징 처리 -1페이지당 5개씩
 		int endNum = pg*5;
 		int startNum = endNum -4;
@@ -75,13 +71,19 @@ public class GetBoardListService implements CommandProcess {
 		boardPaging.setPageSize(5);
 		boardPaging.setTotalA(totalA);
 		boardPaging.makePagingHTML();
-		StringBuffer paging = boardPaging.getPagingHTML();
 		
-		System.out.println(json);
+		json.put("pagingHTML", boardPaging.getPagingHTML()+""); // StringBuffer -> String으로 변환
 		
-		request.setAttribute("id", id);
+		//세션
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("memId");
+		
+		
+		
+		
 		request.setAttribute("pg", pg);
 		request.setAttribute("json", json);
+		request.setAttribute("id", id);
 		
 		return "/board/getBoardList.jsp";
 		
@@ -89,3 +91,4 @@ public class GetBoardListService implements CommandProcess {
 	}
 
 }
+

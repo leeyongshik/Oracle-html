@@ -13,15 +13,33 @@ $(document).ready(function(){
 			$.each(data.list,function(index,items){
 				console.log(index, items.seq, items.id, items.name, items.subject);
 				$('<tr/>').append($('<td/>',{align : 'center', text: items.seq}))
-						  .append($('<td/>',{text: items.subject}))
+						  .append($('<td/>',{})
+						  		.append($('<a/>',{href:'#', text: items.subject, class:'subjectA'})))
 						  .append($('<td/>',{align : 'center', text: items.id}))
 						  .append($('<td/>',{align : 'center', text: items.hit}))
 						  .append($('<td/>',{align : 'center', text: items.logtime})).appendTo($('#boardListTable'));
 				
 			});//$.each
+			// 페이징 처리 
+			$('#pagingDiv').html(data.pagingHTML);
+			
+			
+			$('.subjectA').click(function(){
+				
+				//로그인 여부
+				if($('#id').val()=='')
+					alert('먼저 로그인하세요.');
+				else {
+				var seq = $(this).parent().prev().text();
+				
+				//alert($(this).parent().prev().text());
+				location.href = '/miniProject_mvc/board/boardView.do?seq='+seq+"&pg="+$('#pg').val();
+				}
+			});
 		},
 		error : function(err){
 			console.log(err);
 		}
 	});
 });
+

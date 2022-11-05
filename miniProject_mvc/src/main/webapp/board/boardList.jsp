@@ -54,6 +54,7 @@
 	
 	<h3 align="left">글목록</h3>
 	<input type="hidden" id="pg" value="${pg}">
+	<input type="hidden" id="id" value="${id}">
 		<table border="1" cellpadding="5" frame="hsides" rules="rows" id="boardListTable">
 			
 			<tr>
@@ -71,7 +72,7 @@
 		</table>
 		
 		<input type="button" value="메인페이지" id="mainpage" onclick="location.href='../index.jsp'">
-		 <div id ="pagingDiv">${paging}</div>
+		 <div id ="pagingDiv"></div>
 	<script type="text/javascript">
 		function boardPaging(pg) {location.href="boardList.do?pg=" + pg;}
 		

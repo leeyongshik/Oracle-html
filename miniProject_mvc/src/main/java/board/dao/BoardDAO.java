@@ -74,5 +74,29 @@ public class BoardDAO {
 		
 		return boardDTO;
 	}
+
+	public BoardDTO detailedPage(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.detailedPage",seq);
+		sqlSession.close();
+		return boardDTO;
+	}
+
+	public void boardUpate(BoardDTO boardDTO) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("boardSQL.boardUpate",boardDTO);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		
+	}
+
+	public void boardDelete(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.delete("boardSQL.boardDelete",seq);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
 	
 }
