@@ -59,7 +59,7 @@ $('#deleteBtn').click(function(){
 			}
 	});
 	
-});
+}); 
 </script>
 </body>
 </html>
