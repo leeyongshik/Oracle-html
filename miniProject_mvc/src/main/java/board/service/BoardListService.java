@@ -24,8 +24,8 @@ public class BoardListService implements CommandProcess {
 		String id = (String) session.getAttribute("memId");
 		
 		request.setAttribute("pg", pg);
-		request.setAttribute("display", "/board/boardList.jsp");
 		request.setAttribute("id", id);
+		request.setAttribute("display", "/board/boardList.jsp");
 		
 		return "/index.jsp";
 	}
