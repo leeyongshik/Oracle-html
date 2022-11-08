@@ -1,18 +1,11 @@
 package board.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.control.CommandProcess;
 
-import board.bean.BoardDTO;
-import board.bean.BoardPaging;
-import board.dao.BoardDAO;
 
 public class BoardListService implements CommandProcess {
 

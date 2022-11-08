@@ -29,7 +29,7 @@
 		<tr>
 			<td colspan="2" align="center">
 				<input type="button" value="글수정" id="boardUpdateBtn">
-				<input type="reset" value="다시작성">
+				<input type="reset" value="다시작성" onclick="location.reload()">
 			</td>
 			
 		</tr>
@@ -48,7 +48,7 @@ $(function(){
 		success : function(data){
 			//alert(JSON.stringify(data));
 			$('#subject').val(data.subject);
-			$('#content').text(data.content);
+			$('#content').val(data.content);
 			
 		},
 		error: function(err){

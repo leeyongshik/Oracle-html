@@ -46,20 +46,28 @@
 <script type="text/javascript" src="../js/boardView.js"></script>
 <script type="text/javascript">
 $('#deleteBtn').click(function(){
-	$.ajax({
-		url : '/miniProject_mvc/board/boardDelete.do',
-		type : 'post',
-		data : 'seq='+$('#seq').val(),
-		success: function(){
-				alert("글 삭제 성공");
-				location.href = '/miniProject_mvc/board/boardList.do?pg=1';
-			},
-			error : function(err){
-				console.log(err);
-			}
-	});
+	if(confirm("정말로 삭제하시겠습니까?")){
+		$.ajax({
+			url : '/miniProject_mvc/board/boardDelete.do',
+			type : 'post',
+			data : 'seq='+$('#seq').val(),
+			success: function(){
+					alert("글 삭제 성공");
+					location.href = '/miniProject_mvc/board/boardList.do?pg=1';
+				},
+				error : function(err){
+					console.log(err);
+				}
+		});
+	}
 	
 });  
+/* $('#deleteBtn').click(function(){
+	if(confirm("정말로 삭제 하시겠습니까?")){
+		$('#boardViewForm').attr('action','/miniProject_mvc/board/board~~~.do');
+		$('#boardViewForm').submit();
+	}
+}); */
 </script>
 </body>
 </html>

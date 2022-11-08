@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>window 객체</h1>
+	<h3>open 메소드 확인</h3>
+	<div>
+		<!-- return 이후 작업을 수행하지 말아라
+			 작업순서 = onclick => href -->
+		<a href="#" onclick="open1(); return false;"> 새 창 열기</a> 
+		<br>
+		<a href="#" onclick="open2(); return false;"> 팝업 창 열기</a>
+		<br>
+		<a href="#" onclick="open3('https://www.naver.com'); return false;"> 팝업 창 열기(2-1)</a>
+		<br>
+		<a href="#" onclick="open3('https://www.daum.net'); return false;"> 팝업 창 열기(2-2)</a>
+		<br>
+	</div>
+
+<script type="text/javascript">
+
+	function open1() {
+		//새창으로 열린다.
+		window.open("open.html");
+	}
+	function open2() {
+		//새창으로 열린다.
+		window.open("open.html", "", "width=300, height=500, scrollbars=no, toolbar=no, status=no, location=no");
+	}
+	function open3(url) {
+		//새창으로 열린다.
+		window.open(url, "myWindow", "width=500, height=500, scrollbars=no, toolbar=no, status=no, location=no");
+	}
+</script>
+</body>
+</html>
