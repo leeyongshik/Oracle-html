@@ -18,6 +18,7 @@ public class Student {
 	private String password = "Wjstks0cjfl!@";
 	
 	
+	
 	public Student() {
 		try {
 			Class.forName(driver);//생성
