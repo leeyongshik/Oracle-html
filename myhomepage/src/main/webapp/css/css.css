@@ -1,0 +1,17 @@
+@charset "UTF-8";
+#header{
+	width: 1000px;
+	margin: 0 auto;
+	border: 1px solid;
+	height: 70px;
+}
+#header_1{
+	float: left;
+}
+#header_2{
+	float: right;
+}
+#header:after {
+	content : '';
+	clear: both;
+}

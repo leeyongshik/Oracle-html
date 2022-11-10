@@ -8,26 +8,22 @@
 </style>
 </head>
 <body>
+<h1>Hover 이벤트</h1>
 <div id="input">
-	Do it in Here~!!
+	Mouse Over or Out
 </div>
 <h2>결과</h2>
 <div id="result"></div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
-$('#input').mousedown(function() {
-	$('#result').html('Mouse Down Event');
+$('#input').hover(function() {
+	$('#result').html("Mouse Enter Event (onMouseOver)");
+}, function () {
+	$('#result').html("Mouse Leave Event (onMouseOut)");
 });
-$('#input').mouseup(function() {
-	$('#result').html('Mouse Up Event');
-});
-$('#input').mouseenter(function() {
-	$('#result').html('Mouse Enter Event(onMouserOver)');
-});
-$('#input').mouseleave(function() {
-	$('#result').html('Mouse leave Event(onMouserOut)');
-});
+
 </script>
+
 </body>
 </html>

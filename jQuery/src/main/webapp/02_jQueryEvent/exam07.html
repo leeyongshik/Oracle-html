@@ -8,25 +8,22 @@
 </style>
 </head>
 <body>
+<h1>Key 이벤트</h1>
 <div id="input">
-	Do it in Here~!!
+	<input type="text"/>
 </div>
 <h2>결과</h2>
 <div id="result"></div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
-$('#input').mousedown(function() {
-	$('#result').html('Mouse Down Event');
-});
-$('#input').mouseup(function() {
-	$('#result').html('Mouse Up Event');
-});
-$('#input').mouseenter(function() {
-	$('#result').html('Mouse Enter Event(onMouserOver)');
-});
-$('#input').mouseleave(function() {
-	$('#result').html('Mouse leave Event(onMouserOut)');
+$(function () {
+	var count=0;
+	//.keypress - 대소문자 구별 ( A : 65, a : 97 로 나온다, ctrl, shift,...인식못함)
+	$('#input > input[type="text"]').keypress(function (e) {
+		count++;
+		$('#result').html('key count : ' + count +'개 &gt;&gt; ' + e.which);
+	});
 });
 </script>
 </body>
