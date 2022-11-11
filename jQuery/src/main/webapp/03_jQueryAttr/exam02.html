@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>속성 제어</h1>
+<p>클릭하세요.</p>
+<img alt="흰수염" src="../img/111.gif" width="500" height="300"/>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+$(function () {
+	var index = 1;
+	
+	$('img').click(function () {
+		index = (index % 2) + 1; // 1~2 순서대로 나온다.
+		$(this).attr('src','../img/'+index+index+index+'.gif');
+	})
+});
+</script>
+</body>
+</html>
