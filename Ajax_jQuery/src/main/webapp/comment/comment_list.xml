@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comment>
+	<result>true</result>
+	<message></message>
+	<total_count>24</total_count>
+	<item>
+		<num>1</num>
+		<writer>홍길동</writer>
+		<content>가나다라마바사아자차카타파하 으헤으헤으헤헤~</content>
+		<datetime><![CDATA[2021-03-15- 12:21:42]]></datetime>
+	</item>
+	<item>
+		<num>2</num>
+		<writer>라이언</writer>
+		<content>집에 가고 싶다 으헤으헤으헤헤~</content>
+		<datetime><![CDATA[2021-03-15- 12:21:42]]></datetime>
+	</item>
+	<item>
+		<num>3</num>
+		<writer>코난</writer>
+		<content>금요일...이...다....나는...가...끔...눈물을....흘린다.... 으헤으헤으헤헤~</content>
+		<datetime><![CDATA[2021-01-01- 01:01:01]]></datetime>
+	</item>
+</comment>
+<!-- 
+CDATA Section
+- <![CDATA[.....]]> 
+- CDATA Section 영역 안에서는 특수문자의 사용이 자유롭다.
+- 한글을 포함한 문자열 데이터에 사용할 수 있다.
+ -->
